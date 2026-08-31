@@ -102,11 +102,18 @@
     'uploads/dummy-bathroom.jpg',
     'uploads/dummy-apartment.jpg',
     'uploads/dummy-pool.jpg',
+    'uploads/dummy-living-airy.jpg',
+    'uploads/dummy-tower-pool-dusk.jpg',
+    'uploads/dummy-living-window.jpg',
   ];
   const dummyImageFor = (id) => {
     if (!id || id === 'sell-upload' || id.startsWith('admin-')) return '';
-    if (id === 'about-hero' || id === 'contact-map' || id === 'detail-map' || id.startsWith('tower-')) {
+    if (id === 'about-hero' || id === 'contact-map' || id === 'detail-map') {
       return 'uploads/dummy-exterior.jpg';
+    }
+    if (id.startsWith('tower-')) {
+      const towerNumber = Number(id.slice('tower-'.length)) || 0;
+      return towerNumber % 2 ? 'uploads/dummy-tower-pool-dusk.jpg' : 'uploads/dummy-exterior.jpg';
     }
     if (id === 'shyam-photo' || id === 'agent-photo' || id.startsWith('testi-')) {
       return 'uploads/dummy-agent.jpg';

@@ -32,3 +32,6 @@ The rendered pages use these locally hosted representative images while listing-
 - [Pool](https://unsplash.com/photos/1576013551627-0cc20b96c2a7)
 - [Apartment](https://unsplash.com/photos/1522708323590-d24dbb6b0267)
 - [Real-estate image](https://unsplash.com/photos/1560518883-ce09059eeffa)
+- [Airy apartment interior](https://unsplash.com/photos/a-bright-and-airy-living-room-with-modern-decor-ZuHIek5xn_I)
+- [Residential towers and pool at dusk](https://unsplash.com/photos/modern-apartment-buildings-with-swimming-pools-at-dusk-pOPzAAFRGTQ)
+- [Modern living room with large windows](https://unsplash.com/photos/modern-living-room-with-large-windows-and-comfortable-seating-LqGf5UvHCZ8)
