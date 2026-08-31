@@ -27,9 +27,9 @@ jobs:
       - name: Assemble site
         run: |
           mkdir _site
-          cp index.html support.js image-slot.js _site/
+          cp *.html _site/
+          cp -r css js images _site/
           cp .nojekyll _site/
-          cp -r images _site/
           if [ -f CNAME ]; then cp CNAME _site/; fi
 
       - name: Setup Pages

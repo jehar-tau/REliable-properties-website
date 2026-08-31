@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reliable Properties — Amanora's Trusted Property Partner</title>
+<title>Properties | Reliable Properties</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-page="home">
+<body data-page="properties">
 <div class="page has-mobile-bar">
 
   <header class="site-header">
@@ -41,16 +41,14 @@
     </div>
   </header>
 
-  <section class="stub-hero">
-    <h1>Find Your Next Home in Amanora</h1>
-    <p>Buy &bull; Sell &bull; Rent — 15+ Years of Local Expertise in Amanora Park Town. This is a placeholder homepage; the full homepage build (hero carousel, trust bar, featured listings, tower directory, testimonials) is a separate task from this handoff — see <code>project/Home.dc.html</code> for the design.</p>
-    <div class="stub-cta-row">
-      <a href="properties.html" class="btn btn-call">View Properties</a>
-      <a href="#" data-wa-general class="btn btn-whatsapp">WhatsApp Shyam</a>
-    </div>
+  <section class="stub-hero" style="padding-bottom:20px;">
+    <h1>Properties Available in Amanora</h1>
+    <p>Explore properties selected by our local experts. This is a minimal listing stub for linking into Property Detail pages — filters, sorting and pagination from the full spec are a separate task.</p>
   </section>
 
-  <footer class="site-footer">© Reliable Properties &nbsp;|&nbsp; <a href="index.html">Home</a></footer>
+  <div class="property-grid" id="property-grid"></div>
+
+  <footer class="site-footer">© Reliable Properties &nbsp;|&nbsp; <a href="index.html">Back to Home</a></footer>
 
   <a href="#" data-wa-general class="wa-float"><span>☎</span></a>
   <div class="mobile-bar">
@@ -65,9 +63,31 @@
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 <script>
-  document.querySelectorAll('[data-call-primary]').forEach(function (a) {
-    a.setAttribute('href', 'tel:' + window.RP.PHONE_PRIMARY);
-  });
+  (function () {
+    document.querySelectorAll('[data-call-primary]').forEach(function (a) {
+      a.setAttribute('href', 'tel:' + window.RP.PHONE_PRIMARY);
+    });
+
+    var grid = document.getElementById('property-grid');
+    window.RP.properties.forEach(function (p) {
+      var statusCls = p.status === 'Sold' ? 'badge-sold' : p.status === 'Rented' ? 'badge-rented' : 'badge-available';
+      var card = document.createElement('a');
+      card.className = 'property-card';
+      card.href = 'property-detail.html?slug=' + encodeURIComponent(p.slug);
+      card.innerHTML =
+        '<div class="placeholder-tile rect-8 no-caption"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg></div>' +
+        '<div class="property-card-body">' +
+          '<div class="badge-row">' +
+            '<span class="badge badge-purpose">' + (p.purpose === 'Rent' ? 'FOR RENT' : 'FOR SALE') + '</span>' +
+            '<span class="badge ' + statusCls + '">' + p.status.toUpperCase() + '</span>' +
+          '</div>' +
+          '<h3>' + p.title + '</h3>' +
+          '<div class="pc-loc">' + p.tower + ', Amanora Park Town</div>' +
+          '<div class="pc-price">' + p.price + '</div>' +
+        '</div>';
+      grid.appendChild(card);
+    });
+  })();
 </script>
 </body>
 </html>

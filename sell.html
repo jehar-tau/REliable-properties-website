@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reliable Properties — Amanora's Trusted Property Partner</title>
+<title>Sell Your Property | Reliable Properties</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-page="home">
+<body data-page="sell">
 <div class="page has-mobile-bar">
 
   <header class="site-header">
@@ -42,15 +42,14 @@
   </header>
 
   <section class="stub-hero">
-    <h1>Find Your Next Home in Amanora</h1>
-    <p>Buy &bull; Sell &bull; Rent — 15+ Years of Local Expertise in Amanora Park Town. This is a placeholder homepage; the full homepage build (hero carousel, trust bar, featured listings, tower directory, testimonials) is a separate task from this handoff — see <code>project/Home.dc.html</code> for the design.</p>
+    <h1>Own a Property in Amanora?</h1>
+    <p>Let Reliable Properties find the right buyer or tenant, backed by 15+ years of Amanora market experience. This is a placeholder page — the full listing form from the spec is a separate task.</p>
     <div class="stub-cta-row">
-      <a href="properties.html" class="btn btn-call">View Properties</a>
-      <a href="#" data-wa-general class="btn btn-whatsapp">WhatsApp Shyam</a>
+      <a href="#" id="wa-list-link" class="btn btn-whatsapp">List Property on WhatsApp</a>
     </div>
   </section>
 
-  <footer class="site-footer">© Reliable Properties &nbsp;|&nbsp; <a href="index.html">Home</a></footer>
+  <footer class="site-footer">© Reliable Properties &nbsp;|&nbsp; <a href="index.html">Back to Home</a></footer>
 
   <a href="#" data-wa-general class="wa-float"><span>☎</span></a>
   <div class="mobile-bar">
@@ -68,6 +67,10 @@
   document.querySelectorAll('[data-call-primary]').forEach(function (a) {
     a.setAttribute('href', 'tel:' + window.RP.PHONE_PRIMARY);
   });
+  document.getElementById('wa-list-link').setAttribute(
+    'href',
+    window.RP.waLink("Hi Shyam, I'd like to list my property with Reliable Properties.")
+  );
 </script>
 </body>
 </html>

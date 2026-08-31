@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property Detail | Reliable Properties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="properties">
+<div class="page has-mobile-bar">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark"><span>R</span></div>
+        <div class="brand-name">Reliable Properties</div>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="properties.html" data-nav="properties">Properties</a>
+        <a href="sell.html" data-nav="sell">Sell Your Property</a>
+        <a href="about.html" data-nav="about">About Us</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" data-wa-general class="wa-header-btn">WhatsApp Us</a>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="properties.html">Properties</a>
+      <a href="sell.html">Sell Your Property</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" data-wa-general class="wa-mobile-btn">WhatsApp Us</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="properties.html">Properties</a> / <span id="breadcrumb-tower"></span> / <span id="breadcrumb-title"></span>
+  </div>
+
+  <section class="gallery-section">
+    <div class="gallery-main-grid">
+      <div class="gallery-main-wrap" id="gallery-main-wrap">
+        <div class="gallery-main-slot"></div>
+        <div class="image-counter"></div>
+        <div class="status-overlay"><span></span></div>
+      </div>
+      <div class="thumb-stack" id="thumb-stack"></div>
+    </div>
+    <div class="gallery-row" id="gallery-row"></div>
+  </section>
+
+  <section class="detail-content">
+    <div>
+      <div class="badge-row" id="badge-row"></div>
+      <h1 class="detail-title" id="detail-title"></h1>
+      <div class="detail-address" id="detail-address"></div>
+      <div class="detail-price" id="detail-price"></div>
+
+      <div class="facts-grid">
+        <div><div class="fact-label">Configuration</div><div class="fact-value" id="fact-config"></div></div>
+        <div><div class="fact-label">Bathrooms</div><div class="fact-value" id="fact-baths"></div></div>
+        <div><div class="fact-label">Area</div><div class="fact-value" id="fact-area"></div></div>
+        <div><div class="fact-label">Furnishing</div><div class="fact-value" id="fact-furnishing"></div></div>
+        <div><div class="fact-label">Parking</div><div class="fact-value" id="fact-parking"></div></div>
+        <div><div class="fact-label">Floor</div><div class="fact-value" id="fact-floor"></div></div>
+      </div>
+
+      <h2 class="section-heading">Description</h2>
+      <p class="detail-description" id="detail-description"></p>
+
+      <h2 class="section-heading">Amenities</h2>
+      <div class="amenities-grid" id="amenities-grid"></div>
+
+      <h2 class="section-heading">Location</h2>
+      <div class="location-card">
+        <div class="tower-name" id="location-tower"></div>
+        <div class="tower-addr">Amanora Park Town, Hadapsar, Pune</div>
+      </div>
+      <div class="map-tile-wrap" id="map-slot"></div>
+    </div>
+
+    <div class="enquiry-card">
+      <div class="enquiry-title">Interested in this property?</div>
+      <div class="agent-row">
+        <div class="agent-photo-slot" id="agent-photo-slot"></div>
+        <div>
+          <div class="agent-name">Shyam Kadam</div>
+          <div class="agent-org">Reliable Properties</div>
+        </div>
+      </div>
+      <div class="enquiry-actions">
+        <a href="#" data-call-primary class="btn btn-call">Call</a>
+        <a href="#" id="wa-property-link" class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <button type="button" id="toggle-enquiry-form" class="btn btn-tertiary">Send Enquiry</button>
+      </div>
+      <div class="enquiry-form" id="enquiry-form">
+        <input type="text" placeholder="Your Name">
+        <input type="tel" placeholder="Mobile Number">
+        <button type="button" id="submit-enquiry" class="btn btn-call btn-submit">Submit</button>
+        <div class="thank-you">Thank you, Shyam will contact you shortly.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">© Reliable Properties &nbsp;|&nbsp; <a href="index.html">Back to Home</a> <span class="footer-sep">&nbsp;|&nbsp;</span> <a href="IMAGE_CREDITS.md">Photo credits</a></footer>
+
+  <a href="#" data-wa-general class="wa-float"><span>☎</span></a>
+  <div class="mobile-bar">
+    <div class="mobile-bar-grid">
+      <a href="#" data-call-primary class="call">Call</a>
+      <a href="#" data-wa-general class="wa">WhatsApp</a>
+      <a href="properties.html" class="view">View Properties</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <div class="lightbox-stage" id="lightbox-stage"></div>
+  <div class="lightbox-nav">
+    <button type="button" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <span class="lightbox-count" id="lightbox-count"></span>
+    <button type="button" id="lightbox-next" aria-label="Next image">&#8250;</button>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/property-detail.js"></script>
+</body>
+</html>
