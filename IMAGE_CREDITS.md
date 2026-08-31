@@ -19,3 +19,16 @@ The remaining gallery images are representative interior photos sourced from [Un
 - [Master bedroom](https://unsplash.com/photos/1600607688969-a5bfcd646154)
 - [Dining area](https://unsplash.com/photos/1600573472591-ee6b68d14c68)
 - [Bathroom](https://unsplash.com/photos/1552321554-5fefe8c9ef14)
+
+## Temporary dummy images
+
+The rendered pages use these locally hosted representative images while listing-specific photography is pending:
+
+- [Living room](https://unsplash.com/photos/1600566753190-17f0baa2a6c3)
+- [Kitchen](https://unsplash.com/photos/1556912172-45b7abe8b7e1)
+- [Bedroom](https://unsplash.com/photos/1616486338812-3dadae4b4ace)
+- [Bathroom](https://unsplash.com/photos/1552321554-5fefe8c9ef14)
+- [Exterior](https://unsplash.com/photos/1600585154340-be6161a56a0c)
+- [Pool](https://unsplash.com/photos/1576013551627-0cc20b96c2a7)
+- [Apartment](https://unsplash.com/photos/1522708323590-d24dbb6b0267)
+- [Real-estate image](https://unsplash.com/photos/1560518883-ce09059eeffa)

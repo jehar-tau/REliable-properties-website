@@ -93,6 +93,33 @@
 (() => {
   const STATE_FILE = '.image-slots.state.json';
 
+  // Local representative photography used until listing-specific images
+  // are supplied. Upload controls intentionally remain empty.
+  const DUMMY_IMAGES = [
+    'uploads/dummy-living.jpg',
+    'uploads/dummy-kitchen.jpg',
+    'uploads/dummy-bedroom.jpg',
+    'uploads/dummy-bathroom.jpg',
+    'uploads/dummy-apartment.jpg',
+    'uploads/dummy-pool.jpg',
+  ];
+  const dummyImageFor = (id) => {
+    if (!id || id === 'sell-upload' || id.startsWith('admin-')) return '';
+    if (id === 'about-hero' || id === 'contact-map' || id === 'detail-map' || id.startsWith('tower-')) {
+      return 'uploads/dummy-exterior.jpg';
+    }
+    if (id === 'shyam-photo' || id === 'agent-photo' || id.startsWith('testi-')) {
+      return 'uploads/dummy-agent.jpg';
+    }
+    if (id === 'about-teaser') return 'uploads/dummy-apartment.jpg';
+    if (id === 'detail-main' || id === 'detail-thumb-1') return 'uploads/dummy-living.jpg';
+    if (id === 'detail-thumb-2') return 'uploads/dummy-kitchen.jpg';
+    if (id === 'detail-thumb-3') return 'uploads/dummy-bedroom.jpg';
+    const match = id.match(/(?:feat|prop|gallery)-(\d+)/);
+    if (match) return DUMMY_IMAGES[Number(match[1]) % DUMMY_IMAGES.length];
+    return 'uploads/dummy-apartment.jpg';
+  };
+
   // Unsplash terms require visible attribution wherever their photos
   // display, and every link back to unsplash.com must carry utm referral
   // params. Two render-time rules enforce that here:
@@ -703,6 +730,10 @@
     }
 
     connectedCallback() {
+      if (!this.hasAttribute('src')) {
+        const dummySrc = dummyImageFor(this.id);
+        if (dummySrc) this.setAttribute('src', dummySrc);
+      }
       // Warn once per page — an id-less slot works for the session but
       // cannot persist, and two id-less slots would share nothing.
       if (!this.id && !ImageSlot._warned) {
