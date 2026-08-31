@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FBF7EF;font-family:'Manrope',sans-serif;} a{color:#0B2E4E;} a:hover{color:#C99A2E;}</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="width:100%;background:#FBF7EF;color:#3D3B32;overflow-x:hidden;padding-bottom:{{ mobileBarPad }};">
+  <header style="position:sticky;top:0;z-index:50;background:#FFFFFF;border-bottom:1px solid #ECE4D2;">
+    <div style="max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <a href="Home.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div style="width:42px;height:42px;border-radius:10px;background:#0B2E4E;display:flex;align-items:center;justify-content:center;"><span style="color:#C99A2E;font-family:'Spectral',serif;font-weight:700;font-size:20px;">R</span></div>
+        <div style="font-family:'Spectral',serif;font-weight:700;font-size:19px;color:#0B2E4E;">Reliable Properties</div>
+      </a>
+      <nav style="display:{{ desktopNavDisplay }};align-items:center;gap:28px;">
+        <a href="Home.dc.html" style="text-decoration:none;font-size:15px;font-weight:600;color:#0B2E4E;">Home</a>
+        <a href="Properties.dc.html" style="text-decoration:none;font-size:15px;font-weight:600;color:#0B2E4E;">Properties</a>
+        <a href="Sell.dc.html" style="text-decoration:none;font-size:15px;font-weight:600;color:#0B2E4E;">Sell Your Property</a>
+        <a href="About.dc.html" style="text-decoration:none;font-size:15px;font-weight:800;color:#C99A2E;">About Us</a>
+        <a href="Contact.dc.html" style="text-decoration:none;font-size:15px;font-weight:600;color:#0B2E4E;">Contact</a>
+      </nav>
+      <a href="{{ waGeneralLink }}" style="display:{{ desktopNavDisplay }};align-items:center;gap:8px;background:#0B2E4E;color:#fff;text-decoration:none;padding:11px 20px;border-radius:8px;font-weight:700;font-size:14px;">WhatsApp Us</a>
+    </div>
+  </header>
+
+  <section style="position:relative;height:340px;">
+    <image-slot id="about-hero" shape="rect" placeholder="Amanora Park Town skyline" style="width:100%;height:100%;"></image-slot>
+    <div style="position:absolute;inset:0;background:rgba(8,34,56,0.6);display:flex;align-items:center;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 24px;width:100%;">
+        <h1 style="font-family:'Spectral',serif;color:#fff;font-size:36px;margin:0;max-width:600px;">15+ Years of Property Expertise in Amanora</h1>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:900px;margin:0 auto;padding:64px 24px;">
+    <p style="font-size:17px;line-height:1.8;color:#4A4A42;margin:0 0 24px;">Reliable Properties began with a simple focus: know Amanora Park Town better than anyone else, and use that knowledge to help owners, buyers and tenants make good decisions. Fifteen years later, that focus hasn't changed.</p>
+    <p style="font-size:17px;line-height:1.8;color:#4A4A42;margin:0 0 24px;">Over the years, we've come to know most of Amanora's towers from the inside — Future Towers, Aspire Towers, Adreno Towers, Ascent Towers, Metro Towers, Trendy Towers, Neo Towers and Gateway Towers among them. We know which floors get the best light, which societies have active maintenance, and which owners are genuinely ready to sell or rent.</p>
+    <p style="font-size:17px;line-height:1.8;color:#4A4A42;margin:0 0 24px;">That local depth means we can match a buyer or tenant to the right apartment quickly, and help an owner price a property realistically based on what's actually happening in the market today, not a generic city-wide estimate.</p>
+    <p style="font-size:17px;line-height:1.8;color:#4A4A42;margin:0;">Many of our clients come back years later — to upgrade, to rent out a second home, or to help a family member find a place nearby. Those long-term relationships are what we value most.</p>
+  </section>
+
+  <section style="background:#F4EDDD;padding:64px 24px;">
+    <div style="max-width:900px;margin:0 auto;display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
+      <image-slot id="shyam-photo" shape="circle" placeholder="Shyam Kadam" style="width:140px;height:140px;flex-shrink:0;"></image-slot>
+      <div>
+        <div style="font-family:'Spectral',serif;font-size:24px;color:#0B2E4E;font-weight:700;">Shyam Kadam</div>
+        <div style="color:#A9863A;font-weight:700;margin-bottom:12px;">Property Consultant, Reliable Properties</div>
+        <p style="color:#4A4A42;font-size:15px;line-height:1.7;margin:0;">Shyam has worked in and around Amanora Park Town for over fifteen years, personally guiding hundreds of buyers, sellers and tenants through the process of finding or letting go of a home.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0B2E4E;padding:64px 24px;text-align:center;">
+    <h2 style="font-family:'Spectral',serif;color:#fff;font-size:28px;margin:0 0 24px;">Talk directly with a local property expert.</h2>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:9890982473" style="background:#C99A2E;color:#0B2E4E;text-decoration:none;padding:14px 30px;border-radius:8px;font-weight:800;">Call Now</a>
+      <a href="{{ waGeneralLink }}" style="background:#1FAA53;color:#fff;text-decoration:none;padding:14px 30px;border-radius:8px;font-weight:700;">WhatsApp</a>
+    </div>
+  </section>
+
+  <footer style="background:#082238;color:#CBD6DF;padding:40px 24px;text-align:center;font-size:12px;">© Reliable Properties &nbsp; | &nbsp; <a href="Home.dc.html" style="color:#CBD6DF;">Back to Home</a></footer>
+  <a href="{{ waGeneralLink }}" style="position:fixed;bottom:84px;right:20px;width:56px;height:56px;background:#1FAA53;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.25);z-index:60;text-decoration:none;"><span style="color:#fff;font-size:26px;">☎</span></a>
+  <div style="display:{{ mobileBarDisplay }};position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ECE4D2;z-index:55;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+      <a href="tel:9890982473" style="text-decoration:none;color:#0B2E4E;text-align:center;padding:12px 4px;font-weight:700;font-size:12px;border-right:1px solid #ECE4D2;">Call</a>
+      <a href="{{ waGeneralLink }}" style="text-decoration:none;color:#1FAA53;text-align:center;padding:12px 4px;font-weight:700;font-size:12px;border-right:1px solid #ECE4D2;">WhatsApp</a>
+      <a href="Properties.dc.html" style="text-decoration:none;color:#0B2E4E;text-align:center;padding:12px 4px;font-weight:700;font-size:12px;">View Properties</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { isMobile: false };
+  componentDidMount() {
+    this.checkMobile = () => this.setState({ isMobile: window.innerWidth < 1120 });
+    this.checkMobile();
+    window.addEventListener('resize', this.checkMobile);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.checkMobile); }
+  renderVals() {
+    const isMobile = this.state.isMobile;
+    return {
+      waGeneralLink: 'https://wa.me/919890982473?text=' + encodeURIComponent("Hi Shyam, I'm looking for a property in Amanora."),
+      desktopNavDisplay: isMobile ? 'none' : 'flex',
+      mobileBarDisplay: isMobile ? 'block' : 'none',
+      mobileBarPad: isMobile ? '54px' : '0'
+    };
+  }
+}
+</script>
+</body>
+</html>

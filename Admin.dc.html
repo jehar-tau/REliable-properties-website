@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F4EDDD;font-family:'Manrope',sans-serif;} ::selection{background:#C99A2E;color:#0B2E4E;}</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<sc-if value="{{ !loggedIn }}" hint-placeholder-val="{{ true }}">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0B2E4E;">
+    <div style="background:#fff;border-radius:14px;padding:40px;width:340px;box-shadow:0 20px 50px rgba(0,0,0,0.3);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <div style="width:40px;height:40px;border-radius:9px;background:#0B2E4E;display:flex;align-items:center;justify-content:center;"><span style="color:#C99A2E;font-family:'Spectral',serif;font-weight:700;">R</span></div>
+        <div style="font-family:'Spectral',serif;font-weight:700;color:#0B2E4E;font-size:17px;">Reliable Properties CMS</div>
+      </div>
+      <label style="font-size:13px;font-weight:700;color:#0B2E4E;">Admin Passcode</label>
+      <input type="password" value="{{ passInput }}" onChange="{{ setPassInput }}" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #DCD3BB;margin-top:6px;margin-bottom:14px;font-family:'Manrope',sans-serif;"/>
+      <sc-if value="{{ loginError }}" hint-placeholder-val="{{ false }}">
+        <div style="color:#A33F3F;font-size:13px;margin-bottom:12px;">Incorrect passcode. Try again.</div>
+      </sc-if>
+      <button onClick="{{ tryLogin }}" style="width:100%;padding:13px;border:none;border-radius:8px;background:#0B2E4E;color:#fff;font-weight:700;cursor:pointer;">Log In</button>
+      <div style="font-size:12px;color:#A9A188;margin-top:16px;text-align:center;">Prototype login — passcode: reliable2026</div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;min-height:100vh;background:#F4EDDD;">
+
+  <aside style="width:230px;flex-shrink:0;background:#0B2E4E;color:#fff;padding:24px 18px;display:flex;flex-direction:column;gap:6px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px;">
+      <div style="width:36px;height:36px;border-radius:8px;background:#C99A2E;display:flex;align-items:center;justify-content:center;"><span style="color:#0B2E4E;font-family:'Spectral',serif;font-weight:700;">R</span></div>
+      <div style="font-family:'Spectral',serif;font-weight:700;font-size:15px;">Reliable CMS</div>
+    </div>
+    <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="5">
+      <button onClick="{{ nav.onClick }}" style="text-align:left;padding:11px 14px;border-radius:8px;border:none;background:{{ nav.bg }};color:{{ nav.color }};font-weight:700;font-size:14px;cursor:pointer;">{{ nav.label }}</button>
+    </sc-for>
+    <div style="flex:1;"></div>
+    <button onClick="{{ logout }}" style="text-align:left;padding:11px 14px;border-radius:8px;border:none;background:transparent;color:#CBD6DF;font-weight:600;font-size:13px;cursor:pointer;">Log Out</button>
+  </aside>
+
+  <main style="flex:1;padding:32px 36px;overflow-x:auto;">
+
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+      <h1 style="font-family:'Spectral',serif;color:#0B2E4E;font-size:26px;margin:0 0 24px;">Dashboard</h1>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;">
+        <sc-for list="{{ statCards }}" as="c" hint-placeholder-count="8">
+          <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 16px rgba(11,46,78,0.06);">
+            <div style="font-size:12px;color:#7A7A6E;font-weight:700;margin-bottom:8px;">{{ c.label }}</div>
+            <div style="font-family:'Spectral',serif;font-size:28px;color:#0B2E4E;font-weight:700;">{{ c.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ goProperties }}" style="padding:12px 22px;border-radius:8px;border:none;background:#0B2E4E;color:#fff;font-weight:700;cursor:pointer;">Manage Properties →</button>
+    </sc-if>
+
+    <sc-if value="{{ isProperties }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h1 style="font-family:'Spectral',serif;color:#0B2E4E;font-size:26px;margin:0;">Properties</h1>
+        <button onClick="{{ addNew }}" style="padding:11px 20px;border-radius:8px;border:none;background:#C99A2E;color:#0B2E4E;font-weight:800;cursor:pointer;">+ Add Property</button>
+      </div>
+
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border-radius:14px;padding:28px;margin-bottom:28px;box-shadow:0 6px 20px rgba(11,46,78,0.08);">
+          <h2 style="font-family:'Spectral',serif;color:#0B2E4E;font-size:19px;margin:0 0 18px;">{{ formTitle }}</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Title*</label><input value="{{ f.title }}" onChange="{{ setF.title }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Reference ID*</label><input value="{{ f.refId }}" onChange="{{ setF.refId }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Tower / Location*</label>
+              <select value="{{ f.tower }}" onChange="{{ setF.tower }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;">
+                <sc-for list="{{ towers }}" as="t" hint-placeholder-count="8"><option value="{{ t }}">{{ t }}</option></sc-for>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Purpose*</label>
+              <select value="{{ f.purpose }}" onChange="{{ setF.purpose }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;">
+                <option value="Sale">Sale</option><option value="Rent">Rent</option>
+              </select>
+            </div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Status*</label>
+              <select value="{{ f.status }}" onChange="{{ setF.status }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;">
+                <option>Draft</option><option>Available</option><option>Sold</option><option>Rented</option><option>Hidden</option>
+              </select>
+            </div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Property Type*</label>
+              <select value="{{ f.type }}" onChange="{{ setF.type }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;">
+                <option>Apartment</option><option>Studio</option><option>Villa</option><option>Commercial</option><option>Plot</option><option>Other</option>
+              </select>
+            </div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">BHK</label><input value="{{ f.bhk }}" onChange="{{ setF.bhk }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Bathrooms</label><input value="{{ f.baths }}" onChange="{{ setF.baths }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Balconies</label><input value="{{ f.balconies }}" onChange="{{ setF.balconies }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Built-up Area</label><input value="{{ f.area }}" onChange="{{ setF.area }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Floor / Total Floors</label><input value="{{ f.floor }}" onChange="{{ setF.floor }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Sale Price</label><input value="{{ f.salePrice }}" onChange="{{ setF.salePrice }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Monthly Rent</label><input value="{{ f.rent }}" onChange="{{ setF.rent }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Furnishing</label>
+              <select value="{{ f.furnishing }}" onChange="{{ setF.furnishing }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;">
+                <option>Unfurnished</option><option>Semi Furnished</option><option>Fully Furnished</option>
+              </select>
+            </div>
+            <div><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Parking</label><input value="{{ f.parking }}" onChange="{{ setF.parking }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;"/></div>
+          </div>
+          <div style="margin-bottom:14px;"><label style="font-size:12px;font-weight:700;color:#0B2E4E;">Description</label><textarea rows="3" value="{{ f.description }}" onChange="{{ setF.description }}" style="width:100%;box-sizing:border-box;padding:10px;border-radius:7px;border:1px solid #DCD3BB;margin-top:4px;font-family:'Manrope',sans-serif;resize:vertical;"></textarea></div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:12px;font-weight:700;color:#0B2E4E;">Amenities</label>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px;">
+              <sc-for list="{{ amenityChecks }}" as="am" hint-placeholder-count="8">
+                <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#4A4A42;">
+                  <input type="checkbox" checked="{{ am.checked }}" onChange="{{ am.toggle }}"/>{{ am.name }}
+                </label>
+              </sc-for>
+            </div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <label style="font-size:12px;font-weight:700;color:#0B2E4E;">Cover Image</label>
+            <div style="margin-top:6px;height:110px;border:2px dashed #DCD3BB;border-radius:10px;">
+              <image-slot id="{{ f.imgId }}" shape="rect" radius="10" placeholder="Drop cover image" style="width:100%;height:100%;"></image-slot>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button onClick="{{ saveProperty }}" style="padding:12px 24px;border-radius:8px;border:none;background:#0B2E4E;color:#fff;font-weight:700;cursor:pointer;">Save Property</button>
+            <button onClick="{{ cancelForm }}" style="padding:12px 24px;border-radius:8px;border:1px solid #DCD3BB;background:#fff;color:#0B2E4E;font-weight:700;cursor:pointer;">Cancel</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(11,46,78,0.06);">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 2fr;gap:8px;padding:14px 18px;background:#F4EDDD;font-size:12px;font-weight:800;color:#0B2E4E;">
+          <div>Property</div><div>Purpose</div><div>Status</div><div>Price</div><div>Ref ID</div><div>Actions</div>
+        </div>
+        <sc-for list="{{ propertyRows }}" as="p" hint-placeholder-count="10">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 2fr;gap:8px;padding:14px 18px;border-top:1px solid #F0EAD9;align-items:center;font-size:13px;">
+            <div style="font-weight:700;color:#0B2E4E;">{{ p.title }}<div style="font-weight:500;color:#7A7A6E;font-size:12px;">{{ p.tower }}</div></div>
+            <div>{{ p.purpose }}</div>
+            <div><span style="padding:4px 10px;border-radius:12px;font-size:11px;font-weight:700;background:{{ p.statusBg }};color:{{ p.statusColor }};">{{ p.status }}</span></div>
+            <div>{{ p.priceDisplay }}</div>
+            <div style="color:#7A7A6E;">{{ p.refId }}</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button onClick="{{ p.onEdit }}" style="padding:6px 10px;border-radius:6px;border:1px solid #DCD3BB;background:#fff;font-size:11px;font-weight:700;color:#0B2E4E;cursor:pointer;">Edit</button>
+              <button onClick="{{ p.onDuplicate }}" style="padding:6px 10px;border-radius:6px;border:1px solid #DCD3BB;background:#fff;font-size:11px;font-weight:700;color:#0B2E4E;cursor:pointer;">Duplicate</button>
+              <button onClick="{{ p.onMarkSold }}" style="padding:6px 10px;border-radius:6px;border:1px solid #DCD3BB;background:#fff;font-size:11px;font-weight:700;color:#0B2E4E;cursor:pointer;">{{ p.toggleLabel }}</button>
+              <button onClick="{{ p.onDelete }}" style="padding:6px 10px;border-radius:6px;border:1px solid #E0B5B5;background:#fff;font-size:11px;font-weight:700;color:#A33F3F;cursor:pointer;">Delete</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLeads }}" hint-placeholder-val="{{ false }}">
+      <h1 style="font-family:'Spectral',serif;color:#0B2E4E;font-size:26px;margin:0 0 20px;">Enquiries</h1>
+      <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(11,46,78,0.06);">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1.5fr 1fr;gap:8px;padding:14px 18px;background:#F4EDDD;font-size:12px;font-weight:800;color:#0B2E4E;">
+          <div>Date</div><div>Name</div><div>Phone</div><div>Interest</div><div>Message</div><div>Status</div>
+        </div>
+        <sc-for list="{{ leadRows }}" as="l" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1.5fr 1fr;gap:8px;padding:14px 18px;border-top:1px solid #F0EAD9;align-items:center;font-size:13px;">
+            <div>{{ l.date }}</div><div style="font-weight:700;color:#0B2E4E;">{{ l.name }}</div><div>{{ l.phone }}</div><div>{{ l.interest }}</div>
+            <div style="color:#7A7A6E;">{{ l.message }}</div>
+            <div>
+              <select value="{{ l.status }}" onChange="{{ l.onStatusChange }}" style="padding:6px 8px;border-radius:6px;border:1px solid #DCD3BB;font-size:12px;font-family:'Manrope',sans-serif;">
+                <option>New</option><option>Contacted</option><option>Follow-up</option><option>Closed</option><option>Not Interested</option>
+              </select>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isOwnerLeads }}" hint-placeholder-val="{{ false }}">
+      <h1 style="font-family:'Spectral',serif;color:#0B2E4E;font-size:26px;margin:0 0 20px;">Property Owner Leads</h1>
+      <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(11,46,78,0.06);">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:8px;padding:14px 18px;background:#F4EDDD;font-size:12px;font-weight:800;color:#0B2E4E;">
+          <div>Date</div><div>Name</div><div>Phone</div><div>Tower</div><div>Sell / Rent</div><div>Status</div>
+        </div>
+        <sc-for list="{{ ownerLeadRows }}" as="o" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:8px;padding:14px 18px;border-top:1px solid #F0EAD9;align-items:center;font-size:13px;">
+            <div>{{ o.date }}</div><div style="font-weight:700;color:#0B2E4E;">{{ o.name }}</div><div>{{ o.phone }}</div><div>{{ o.tower }}</div><div>{{ o.intent }}</div><div>{{ o.status }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+  </main>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = {
+    loggedIn: false, passInput: '', loginError: false,
+    tab: 'dashboard', properties: [], towers: [],
+    showForm: false, form: null, editingId: null,
+    leads: [
+      { date: '2026-08-01', name: 'Rohit Sharma', phone: '9822011223', interest: 'Buy', message: '3 BHK near central park', status: 'New' },
+      { date: '2026-07-29', name: 'Meena Iyer', phone: '9922334455', interest: 'Rent', message: '2 BHK, budget 35k', status: 'Contacted' },
+      { date: '2026-07-26', name: 'Farhan Khan', phone: '9765123456', interest: 'Sell', message: 'Wants valuation for Metro Towers flat', status: 'Follow-up' },
+      { date: '2026-07-20', name: 'Ritu Kapoor', phone: '9011223344', interest: 'Buy', message: '4 BHK villa, Gateway Towers', status: 'New' }
+    ],
+    ownerLeads: [
+      { date: '2026-08-03', name: 'Deepak Joshi', phone: '9876501234', tower: 'Ascent Towers', intent: 'Sell', status: 'New' },
+      { date: '2026-07-30', name: 'Sunita Rao', phone: '9765098765', tower: 'Neo Towers', intent: 'Rent', status: 'Contacted' },
+      { date: '2026-07-22', name: 'Amit Verma', phone: '9922110099', tower: 'Trendy Towers', intent: 'Sell', status: 'New' }
+    ]
+  };
+
+  componentDidMount() {
+    const saved = localStorage.getItem('rp_cms_properties');
+    if (saved) {
+      this.setState({ properties: JSON.parse(saved) });
+    } else {
+      import('./property-data.js').then(mod => {
+        const props = mod.properties.map(p => ({
+          ...p, refId: 'RP-' + String(p.id).padStart(4, '0'), published: true,
+          description: '', amenities: [], salePrice: p.purpose === 'Sale' ? p.price : '', rent: p.purpose === 'Rent' ? p.price : ''
+        }));
+        this.setState({ properties: props });
+        localStorage.setItem('rp_cms_properties', JSON.stringify(props));
+      });
+    }
+    import('./property-data.js').then(mod => this.setState({ towers: mod.towers }));
+  }
+
+  persist(properties) {
+    localStorage.setItem('rp_cms_properties', JSON.stringify(properties));
+    this.setState({ properties });
+  }
+
+  blankForm() {
+    return {
+      title: '', refId: '', tower: this.state.towers[0] || '', purpose: 'Sale', status: 'Draft',
+      type: 'Apartment', bhk: '', baths: '', balconies: '', area: '', floor: '',
+      salePrice: '', rent: '', furnishing: 'Semi Furnished', parking: '', description: '',
+      amenities: [], imgId: 'form-img-' + Date.now()
+    };
+  }
+
+  renderVals() {
+    const amenityList = ['Swimming Pool','Gym','Clubhouse','Garden','Security','Parking',"Children's Play Area",'Power Backup'];
+    const f = this.state.form || this.blankForm();
+
+    const setF = {};
+    ['title','refId','tower','purpose','status','type','bhk','baths','balconies','area','floor','salePrice','rent','furnishing','parking','description'].forEach(key => {
+      setF[key] = e => this.setState(s => ({ form: { ...s.form, [key]: e.target.value } }));
+    });
+
+    const amenityChecks = amenityList.map(name => ({
+      name, checked: f.amenities.includes(name),
+      toggle: () => this.setState(s => {
+        const cur = s.form.amenities;
+        const next = cur.includes(name) ? cur.filter(a => a !== name) : [...cur, name];
+        return { form: { ...s.form, amenities: next } };
+      })
+    }));
+
+    const total = this.state.properties.length;
+    const available = this.state.properties.filter(p => p.status === 'Available').length;
+    const forSale = this.state.properties.filter(p => p.purpose === 'Sale').length;
+    const forRent = this.state.properties.filter(p => p.purpose === 'Rent').length;
+    const sold = this.state.properties.filter(p => p.status === 'Sold').length;
+    const rented = this.state.properties.filter(p => p.status === 'Rented').length;
+
+    const statusColors = {
+      Available: ['#E4F2E8', '#3F7D53'], Sold: ['#F3E2E2', '#A33F3F'], Rented: ['#F3E2E2', '#A33F3F'],
+      Draft: ['#F0EAD9', '#7A7A6E'], Hidden: ['#F0EAD9', '#7A7A6E']
+    };
+
+    const propertyRows = this.state.properties.map(p => ({
+      ...p,
+      statusBg: (statusColors[p.status] || statusColors.Draft)[0],
+      statusColor: (statusColors[p.status] || statusColors.Draft)[1],
+      priceDisplay: p.purpose === 'Sale' ? (p.salePrice || p.price) : (p.rent || p.price),
+      toggleLabel: p.purpose === 'Sale' ? (p.status === 'Sold' ? 'Mark Available' : 'Mark Sold') : (p.status === 'Rented' ? 'Mark Available' : 'Mark Rented'),
+      onEdit: () => this.setState({ showForm: true, editingId: p.id, form: { ...this.blankForm(), ...p, imgId: 'form-img-' + p.id } }),
+      onDuplicate: () => {
+        const copy = { ...p, id: Date.now(), refId: p.refId + '-COPY', title: p.title + ' (Copy)' };
+        this.persist([copy, ...this.state.properties]);
+      },
+      onMarkSold: () => {
+        const targetStatus = p.purpose === 'Sale'
+          ? (p.status === 'Sold' ? 'Available' : 'Sold')
+          : (p.status === 'Rented' ? 'Available' : 'Rented');
+        this.persist(this.state.properties.map(x => x.id === p.id ? { ...x, status: targetStatus } : x));
+      },
+      onDelete: () => {
+        if (confirm('Delete this property?')) this.persist(this.state.properties.filter(x => x.id !== p.id));
+      }
+    }));
+
+    const leadRows = this.state.leads.map((l, i) => ({
+      ...l, onStatusChange: e => this.setState(s => {
+        const leads = [...s.leads]; leads[i] = { ...leads[i], status: e.target.value }; return { leads };
+      })
+    }));
+
+    const navDefs = [
+      { key: 'dashboard', label: 'Dashboard' },
+      { key: 'properties', label: 'Properties' },
+      { key: 'leads', label: 'Enquiries' },
+      { key: 'ownerleads', label: 'Owner Leads' }
+    ];
+    const navItems = navDefs.map(n => ({
+      label: n.label, onClick: () => this.setState({ tab: n.key, showForm: false }),
+      bg: this.state.tab === n.key ? '#C99A2E' : 'transparent',
+      color: this.state.tab === n.key ? '#0B2E4E' : '#CBD6DF'
+    }));
+
+    return {
+      loggedIn: this.state.loggedIn,
+      passInput: this.state.passInput,
+      setPassInput: e => this.setState({ passInput: e.target.value }),
+      loginError: this.state.loginError,
+      tryLogin: () => {
+        if (this.state.passInput === 'reliable2026') this.setState({ loggedIn: true, loginError: false });
+        else this.setState({ loginError: true });
+      },
+      logout: () => this.setState({ loggedIn: false, passInput: '' }),
+      navItems,
+      isDashboard: this.state.tab === 'dashboard',
+      isProperties: this.state.tab === 'properties',
+      isLeads: this.state.tab === 'leads',
+      isOwnerLeads: this.state.tab === 'ownerleads',
+      goProperties: () => this.setState({ tab: 'properties' }),
+      statCards: [
+        { label: 'Total Listings', value: total }, { label: 'Available', value: available },
+        { label: 'For Sale', value: forSale }, { label: 'For Rent', value: forRent },
+        { label: 'Sold', value: sold }, { label: 'Rented', value: rented },
+        { label: 'New Enquiries', value: this.state.leads.filter(l => l.status === 'New').length },
+        { label: 'Owner Leads', value: this.state.ownerLeads.length }
+      ],
+      showForm: this.state.showForm,
+      formTitle: this.state.editingId ? 'Edit Property' : 'Add Property',
+      addNew: () => this.setState({ showForm: true, editingId: null, form: this.blankForm() }),
+      cancelForm: () => this.setState({ showForm: false, form: null, editingId: null }),
+      f, setF, amenityChecks,
+      towers: this.state.towers,
+      saveProperty: () => {
+        const data = this.state.form;
+        if (this.state.editingId) {
+          this.persist(this.state.properties.map(p => p.id === this.state.editingId ? { ...p, ...data } : p));
+        } else {
+          this.persist([{ ...data, id: Date.now() }, ...this.state.properties]);
+        }
+        this.setState({ showForm: false, form: null, editingId: null });
+      },
+      propertyRows,
+      leadRows,
+      ownerLeadRows: this.state.ownerLeads
+    };
+  }
+}
+
+</script>
+</body>
+</html>
