@@ -4,14 +4,14 @@
 
 Real photographs of Amanora Park Town supplied by Reliable Properties (not stock, no external license needed). They show the neighbourhood and building exteriors — not the interior of any specific unit.
 
-- `public/images/amanora-dome-dusk.jpg` — Amanora Park Town at dusk
-- `public/images/amanora-skyline-day.jpg` — Amanora skyline, daytime
-- `public/images/tower-facade-low-angle.jpg` — Building exterior, low angle
-- `public/images/amanora-tower-night.jpg` — Amanora Park Town at night
+- `images/amanora-dome-dusk.jpg` — Amanora Park Town at dusk (gallery main image)
+- `images/amanora-skyline-day.jpg` — Amanora skyline, daytime
+- `images/tower-facade-low-angle.jpg` — Building exterior, low angle
+- `images/amanora-tower-night.jpg` — Amanora Park Town at night
 
 ## Representative stock photos
 
-The remaining gallery images are representative interior photos sourced from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license). They do not depict the interior of any specific listed apartment unless separately confirmed by Reliable Properties.
+The remaining gallery images are representative interior photos sourced from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license). They do not depict the interior of the listed apartment unless separately confirmed by Reliable Properties.
 
 - [Living room](https://unsplash.com/photos/1600607687939-ce8a6c25118c)
 - [Kitchen](https://unsplash.com/photos/1556912172-45b7abe8b7e1)

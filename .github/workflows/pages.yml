@@ -15,27 +15,22 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static export
-        run: npm run build
-
-      - name: Add CNAME
-        if: hashFiles('CNAME') != ''
-        run: cp CNAME out/CNAME
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp index.html support.js image-slot.js _site/
+          cp .nojekyll _site/
+          cp -r images _site/
+          if [ -f CNAME ]; then cp CNAME _site/; fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -43,15 +38,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: _site
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
