@@ -1,5 +1,9 @@
 # Image credits
 
+## Customer handover photographs
+
+The photographs in `uploads/happy-customers/` were supplied directly by Reliable Properties for use on this website. Exact duplicate uploads and unrelated property-interior images were excluded from the published gallery.
+
 ## Our own photographs
 
 Real photographs of Amanora Park Town supplied by Reliable Properties (not stock, no external license needed). They show the neighbourhood and building exteriors — not the interior of any specific unit.
