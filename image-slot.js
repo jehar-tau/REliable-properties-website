@@ -108,7 +108,10 @@
   ];
   const dummyImageFor = (id) => {
     if (!id || id === 'sell-upload' || id.startsWith('admin-')) return '';
-    if (id === 'about-hero' || id === 'contact-map' || id === 'detail-map') {
+    if (id === 'about-hero') {
+      return 'uploads/82e6bb86530d66305c2bd4b712014742.jpg';
+    }
+    if (id === 'contact-map' || id === 'detail-map') {
       return 'uploads/dummy-exterior.jpg';
     }
     if (id.startsWith('tower-')) {
